@@ -7,6 +7,7 @@ from scipy import stats
 
 fig, ax = plt.subplots()
 fig.set_tight_layout(True)
+plt.xlim(0, 4)
 plt.ylim(-2, 5)
 ax.set_facecolor('black')  # background color of plot
 
@@ -37,7 +38,7 @@ def update(i):
     print(label)
 
     # Update the line plot.
-    line_spike.set_ydata(neuron_spike_fn(x + i))
+    line_spike.set_ydata(neuron_spike_fn(x + 0.5 * i))
 
     # Update the axes with a new xlabel.
     ax.set_xlabel(label)
@@ -50,8 +51,8 @@ if __name__ == '__main__':
     # Matplotlib will otherwise use PillowWriter, which works fine.
 
     # FuncAnimation will call the 'update' function for each frame.
-    n_frames = 15  # animating over this many frames
-    interval_time = 10  # interval between frames, in milliseconds
+    n_frames = 30  # animating over this many frames
+    interval_time = 20  # interval between frames, in milliseconds
     gif_file_name = 'neuron_spike_spiking.gif'
 
     anim = FuncAnimation(
@@ -62,7 +63,7 @@ if __name__ == '__main__':
     )
 
     # Manual save option if you run this as a Python script.
-    sys.argv.append('save')
+    # sys.argv.append('save')
     print(sys.argv)
 
     if len(sys.argv) > 1 and sys.argv[1] == 'save':
