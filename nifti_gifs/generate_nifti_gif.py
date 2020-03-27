@@ -8,6 +8,25 @@ from nifti_gifs.file_helpers import save_gif, process_image
 mode = 'normal'
 
 
+def create_standard_mosaic(out_img: np.array, maximum: int) -> np.array:
+    """
+    Creates grayscale image.
+    """
+    print('out_image', out_img.shape)
+    new_img = [
+        np.hstack((
+            np.hstack((
+                np.flip(out_img[i, :, :], 1).T,
+                np.flip(out_img[:, maximum - i - 1, :], 1).T)
+            ),
+            np.flip(out_img[:, :, maximum - i - 1], 1).T)
+        ) for i in range(maximum)
+    ]
+    new_img = np.array(new_img)
+    print('new_img', new_img.shape)
+    return new_img
+
+
 def generate_gif(filename: str, size=1, frames_per_second: int = 18, colormap=None) -> None:
     """
     Creates and saves a NifTi image mosaic gif.
