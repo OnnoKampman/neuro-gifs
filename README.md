@@ -9,7 +9,7 @@ You may have to add the root location to your `PYTHONPATH`.
 Neuron spiking time series
 ---
 
-<img src="neuron_spiking/neuron_spike_spontaneuous.gif">
+<img src="neuron_spiking/neuron_spike_spontaneous.gif">
 
 NifTi gifs
 ---
